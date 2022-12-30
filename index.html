@@ -4,9 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script>
+
+        function displayLine() {
+
+            var line = generateLine();
+            var shuffledLine = shuffleLine(line);
+
+            let list = document.getElementById("line");
+
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+
+            shuffledLine.forEach((item) => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                list.appendChild(li);
+            })
+        }
+
+        function generateLine() {
+
+            var arr = [];
+
+            for (var i = 1; i <= 11; i++) {
+                arr.push(i);
+            }
+
+            return arr;
+        }
+
+        function shuffleLine(arr) {
+
+            for (var i = arr.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+
+            return arr;
+        }
+
+    </script>
+    <style>
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            display: inline-block;
+            padding: 5px;
+        }
+    </style>
 </head>
 
 <body>
+
+    <ul id="line"></ul>
+
+    <button onclick="displayLine()"> Gerar fila </button>
 
 </body>
 
